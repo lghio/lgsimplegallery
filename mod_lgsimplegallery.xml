@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<extension type="module" version="3.0" client="site" method="upgrade">
+	
+	<name>LG Simple Gallery</name>
+	<author>Laurent Ghio</author>
+	<creationDate>Dec 2014</creationDate>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.0.1</version>
+	<description>Enable to create gallery of pictures from a folder</description>
+	
+	<files>
+		<filename module="mod_lgsimplegallery">mod_lgsimplegallery.php</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>elements</folder>
+	</files>
+	
+	<config>
+		<fields name="params" addfieldpath="/modules/mod_sp_simple_gallery/elements">
+			<fieldset name="basic" label="Basic module configuration">
+				<field name="lg_debug" type="radio" label="Debug (Y/N)" default="1" class="btn-group" description="">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+				<!-- <field name="lg_class_name" type="text" label="Class name:"/> -->
+				<field name="lg_thumb_folder" type="text" label="Folder for thumbs underneath images folder:"/>
+				<field name="lg_gallery_title" type="text" label="Gallery title:"/>
+				<field name="lg_serie_name" type="text" label="Name fo the photo serie:" Description="Group photo in the lightbox popup by serie" default="lgSerie"/>
+				<!-- <field name="lg_custom_css" type="textarea" rows="10" cols="40" default="border:1px solid #DDD; margin:0 5px 10px 5px; padding:5px; background:#fff;" label="Custom CSS" description="Add your custom css code" /> -->
+				<field name="lg_display_style" type="list" label="How to display:" description="" default="standard">
+					<option value="standard">Standard</option>
+					<option value="masonry">Masonry</option>
+					<option value="packery">Packery</option>
+					<option value="carousel">Carousel</option>
+				</field>
+                
+                <field showon="lg_display_style:carousel" name="lg_carousel_max_width" type="text" default="400" label="Max Carousel Width (in px)" description="Width of Carousel without px" />
+
+                
+                <field showon="lg_display_style:masonry" name="lg_masonry_max_width" type="text" default="400" label="Max Masonry Wall Width (in px)" description="Width of masonry wall without px" />
+                <field showon="lg_display_style:masonry" name="lg_masonry_image_width" type="text" default="100" label="Max Masonry Column Width (in px)" description="Width of Thumbnail without px" />
+
+                <field name="lg_image_folder" type="foldertree" directory="images" filter="" label="Folder:" description="relative to /web/"/>
+				<!-- <field name="path" type="foldertree" default="" directory="images" filter="" label="Image directory" description="Select a image directory" />
+				<field name="lg_image_folder2" type="foldertree" directory="images" default="" label="Folder:" description="relative to /web/ folder - no front slash"/> -->
+				<field name="lg_force_square" type="list" default="0" label="Square cropped images">
+					<option value="1">YES - Image will be square (cropped)</option>
+					<option value="0">NO - Image ratio is kept</option>
+				</field>
+				<field name="lg_max_thumb_width" type="text" default="100" label="Max Thumbnail Width (in px)" description="Width of Thumbnail without px" />
+				<field name="lg_max_thumb_height" showon="lg_force_square:0" type="text" default="100" label="Max Thumbnail Height (in px)" description="Height of Thumbnail without px" />
+				<field name="lg_load_own_jquery" type="radio" default="0" label="Load Jquery" description="" class="btn-group">
+					<option value="1">LG Simple Gallery jquery</option>
+					<option value="0">Inherit from Joomla installation</option>
+				</field>
+				<field name="lg_load_own_lightbox" type="radio" default="0" label="Load lightbox" description="" class="btn-group">
+					<option value="1">LG lightbox</option>
+					<option value="0">Inherit from Joomla installation</option>
+				</field>
+				<field name="lg_caption_style" type="list" label="Caption style:" description="How the caption will appear standard, fade, slide" default="fade">
+					<option value="standard">Show/Hide no effect</option>
+					<option value="fade">Fade in / out</option>
+					<option value="slide">Slide down / up</option>
+				</field>
+				<field name="lg_image_shadow" type="radio" label="Shadow image:" description="Show a shadow underneath the image" value="1" default="0" class="btn-group">
+					<option value="1">Add shadow to images</option>
+					<option value="0">No shadow</option>
+				</field>
+				<field name="lg_color_image_shadow" showon="lg_image_shadow:1" type="color" default="#eee" label="Shadow color:"	description="" />
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>
